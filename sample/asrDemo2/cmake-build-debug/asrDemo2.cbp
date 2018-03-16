@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="asrDemo2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asrDemo2">
+				<Option output="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/asrDemo2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/extern/include"/>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/include"/>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/include/ASR"/>
+					<Add directory="/usr/include/c++/4.8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
+					<Add directory="/usr/include/c++/4.8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 asrDemo2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asrDemo2/fast">
+				<Option output="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/asrDemo2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/extern/include"/>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/include"/>
+					<Add directory="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/../../../BDSpeechSDK/include/ASR"/>
+					<Add directory="/usr/include/c++/4.8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
+					<Add directory="/usr/include/c++/4.8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 asrDemo2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/AsrdemoController.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/AsrdemoController.hpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/ResultListener.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/ResultListener.hpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/StatusListener.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/StatusListener.hpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/Util.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/asrdemo/Util.hpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/yours_PrintResultListener.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/yours_PrintResultListener.hpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/src/yours_main.cpp">
+			<Option target="asrDemo2"/>
+		</Unit>
+		<Unit filename="/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

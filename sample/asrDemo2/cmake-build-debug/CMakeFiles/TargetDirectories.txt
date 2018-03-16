@@ -1,0 +1,3 @@
+/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug/CMakeFiles/asrDemo2.dir

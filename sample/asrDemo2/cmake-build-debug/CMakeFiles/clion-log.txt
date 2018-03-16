@@ -1,0 +1,4 @@
+/home/fu/bin/clion-2017.3.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/fu/workspaceLinuxSDK/BDSpeechSDK/sample/asrDemo2/cmake-build-debug
