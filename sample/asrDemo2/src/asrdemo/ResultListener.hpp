@@ -66,7 +66,7 @@ protected:
      * 长语音识别结束，（长语音 = 多个“一句话”的识别过程） EVoiceRecognitionClientWorkStatusLongSpeechEnd
      * 表示整个识别过程结束，BDSpeechSDK实例处于空闲状态
      */
-    virtual void on_long_speech_end() = 0;
+    virtual void on_long_speech_end();
 
     /**
      * 识别出错 EVoiceRecognitionClientWorkStatusError
@@ -84,6 +84,8 @@ protected:
      * 表示整个识别过程结束，BDSpeechSDK实例处于空闲状态
      */
     virtual void on_cancel();
+
+    virtual void on_last_status(int status);
 };
 
 } /* namespace asrdemo */

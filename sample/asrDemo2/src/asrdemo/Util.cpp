@@ -25,7 +25,7 @@ static void print_values(bds::BDSSDKMessage &params, std::vector<std::string> &k
     stream << std::endl;
 }
 
-std::string util::params_to_string(bds::BDSSDKMessage &params) {
+std::string Util::params_to_string(bds::BDSSDKMessage &params) {
     std::stringstream stream;
     if (!params.name.empty()) {
         stream << "name: " << params.name << std::endl;
@@ -53,14 +53,14 @@ std::string util::params_to_string(bds::BDSSDKMessage &params) {
     return stream.str();
 }
 
-uint64_t util::current_timestamp() {
+uint64_t Util::current_timestamp() {
     std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
             std::chrono::system_clock::now().time_since_epoch()
     );
     return ms.count();
 }
 
-std::string util::get_gmt_time() {
+std::string Util::get_gmt_time() {
     struct timeval tv;
     gettimeofday(&tv, NULL);
 
@@ -81,17 +81,17 @@ std::string util::get_gmt_time() {
     return std::string(time_ch_buf);
 }
 
-uint64_t util::cal_speech_duration_ms(int bytes, int sample_rate) {
+uint64_t Util::cal_speech_duration_ms(int bytes, int sample_rate) {
     const int sample_point_bytes = 2;
     int duration_ms = bytes / (sample_point_bytes * sample_rate / 1000);
     return duration_ms;
 }
 
-uint64_t util::cal_speech_8k_duration_ms(int bytes) {
-    return util::cal_speech_duration_ms(bytes, 8000);
+uint64_t Util::cal_speech_8k_duration_ms(int bytes) {
+    return Util::cal_speech_duration_ms(bytes, 8000);
 }
 
-uint64_t util::cal_speech_16k_duration_ms(int bytes) {
-    return util::cal_speech_duration_ms(bytes, 16000);
+uint64_t Util::cal_speech_16k_duration_ms(int bytes) {
+    return Util::cal_speech_duration_ms(bytes, 16000);
 }
 } /* namespace asrdemo */

@@ -12,12 +12,12 @@ SRC_PATH = ../src
 OBJ_PATH = obj
 
 # 编译 libasrdemo.a
-CFLAGS_LIB = $(INC_PATH) -std=c++11 -fPIC -g  -O0 -Wall -Wno-unknown-pragmas  -D__LINUX__
+CFLAGS_LIB = $(INC_PATH) -std=c++11 -fPIC -g  -O0 -Wall -Wno-unknown-pragmas  -D__LINUX__ -D_GLIBCXX_USE_CXX11_ABI=0
 LIB_SOURCE = $(wildcard $(SRC_PATH)/asrdemo/*.cpp)  
 LIB_OBJECT = $(patsubst %.cpp,$(OBJ_PATH)/asrdemo/%.o,$(notdir $(LIB_SOURCE)))
 
 # 编译 demo
-CFLAGS_DEMO = $(INC_PATH) -std=c++11  -fPIC  -g  -O0  -Wall -Wno-unknown-pragmas -Wno-unused-function -D__LINUX__ 
+CFLAGS_DEMO = $(INC_PATH) -std=c++11  -fPIC  -g  -O0  -Wall -Wno-unknown-pragmas -Wno-unused-function -D__LINUX__ -D_GLIBCXX_USE_CXX11_ABI=0
 DEMO_SOURCE = $(wildcard $(SRC_PATH)/yours_*.cpp)
 DEMO_OBJECT = $(patsubst %.cpp,$(OBJ_PATH)/%.o,$(notdir $(DEMO_SOURCE)))
 
@@ -39,15 +39,15 @@ $(TARGET):init lib/libasrdemo.a lib/libasrdemoall.so $(DEMO_OBJECT)
 
 init:
 	mkdir -p $(OBJ_PATH)/asrdemo
-# lib 目录 libasrdemo.a
+# lib 目录 libasrdemoall.so
 	mkdir -p lib 
 #  头文件 目录
-	mkdir -p include 
-	cp $(SRC_PATH)/*.h*  include 
+	mkdir -p include/asrdemo  
+	cp $(SRC_PATH)/asrdemo/*.h* include/asrdemo 
 
-lib/libasrdemo.a:$(LIB_OBJECT) 
+lib/libasrdemo.a:init $(LIB_OBJECT)
 	ar cr lib/libasrdemo.a $(LIB_OBJECT) 
-lib/libasrdemoall.so:$(LIB_OBJECT) 
+lib/libasrdemoall.so:init $(LIB_OBJECT) 
 	$(CC) -shared -fPIC -g  $(LIB_OBJECT) $(OPT_LIBS_EXT) $(LIBS)  -o  lib/libasrdemoall.so
 
 $(OBJ_PATH)/asrdemo/%.o:$(SRC_PATH)/asrdemo/%.cpp

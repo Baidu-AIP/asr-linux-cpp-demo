@@ -16,7 +16,7 @@
 
 namespace asrdemo {
 
-class util {
+class Util {
 public:
     /**
      * 转为 BDSSDKMessage 为可见的字符串

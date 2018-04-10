@@ -101,7 +101,7 @@ void PrintResultListener::on_cancel() {
 void PrintResultListener::write_log(const std::string str) const {
     std::cout.flush();
     std::ostringstream os;
-    os << "[" << asrdemo::util::get_gmt_time() << "][" << _prefix << "] :" << str << std::endl;
+    os << "[" << asrdemo::Util::get_gmt_time() << "][" << _prefix << "] :" << str << std::endl;
     std::cout << os.str();
 }
 

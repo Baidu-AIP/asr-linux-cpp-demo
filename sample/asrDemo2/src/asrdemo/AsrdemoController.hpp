@@ -9,6 +9,8 @@
 #define ASRDEMO_ASRDEMO_CONTROLLER_HPP_
 
 #include <string>
+#include <atomic>
+#include <mutex>
 
 
 #include "BDSpeechSDK.hpp"
@@ -107,6 +109,8 @@ private:
     ResultListener &_listener;
 
     bool _is_configed;
+    std::atomic_bool _is_finished = ATOMIC_VAR_INIT(false);
+    std::mutex _finish_mutex;
 
     // 调用SDK出错
     bool _has_error;

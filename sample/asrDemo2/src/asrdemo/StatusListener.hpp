@@ -14,7 +14,7 @@ namespace asrdemo {
  */
 class StatusListener : public ResultListener {
 public:
-    virtual void output_callback(bds::BDSSDKMessage &message, int status);
+    virtual void on_last_status(int status);
     virtual bool is_finished() const;
 private:
     std::atomic_bool finished = ATOMIC_VAR_INIT(false);

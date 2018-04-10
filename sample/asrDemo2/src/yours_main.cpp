@@ -36,6 +36,7 @@ static void set_config(bds::BDSSDKMessage &cfg_params) {
 
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_APP_ID, app_id);
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_CHUNK_KEY, app_key);
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_SECRET_KEY, app_secret);
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_PRODUCT_ID, product_id);
     cfg_params.set_parameter(bds::COMMON_PARAM_KEY_DEBUG_LOG_LEVEL, bds::EVRDebugLogLevelOff); //关闭debug日志 ，上线时请注释此行
     // float vad_pause_time_ms = 700.0;  //设置vad语句静音切分门限, ms。 即原始语音静音 700ms后，SDK认为一句话结束
@@ -188,7 +189,7 @@ static void recog_multi_files() {
                 ifs[i]->close();
             } else {
                 if (next_sleep_timestamps[i] > 0) {
-                    sleep_ms = next_sleep_timestamps[i] - asrdemo::util::current_timestamp(); // 需要sleep的耗时
+                    sleep_ms = next_sleep_timestamps[i] - asrdemo::Util::current_timestamp(); // 需要sleep的耗时
                     if (sleep_ms > 0) {
                         // cout << "sleep ：" << sleep_ms << endl;
                         usleep(sleep_ms * 1000);
@@ -200,7 +201,7 @@ static void recog_multi_files() {
                     cerr << "stop audio data error:" << error_msg << " : " << status << endl;
                     exit(3);
                 }
-                next_sleep_timestamps[i] = asrdemo::util::current_timestamp() + sleep_ms;
+                next_sleep_timestamps[i] = asrdemo::Util::current_timestamp() + sleep_ms;
             }
         }
     }
@@ -234,9 +235,9 @@ static void _config(asrdemo::AsrdemoController &controller) {
     bds::BDSSDKMessage cfg_params;
     std::string error_msg;
     set_config(cfg_params);
-    // cout << "Config is :\n  " << asrdemo::util::params_to_string(cfg_params);
+    // cout << "Config is :\n  " << asrdemo::Util::params_to_string(cfg_params);
     if (controller.config(cfg_params, error_msg)) {
-        cout << "FOR Feedback : Config is filled :\n" << asrdemo::util::params_to_string(cfg_params) << endl;
+        cout << "FOR Feedback : Config is filled :\n" << asrdemo::Util::params_to_string(cfg_params) << endl;
     } else {
         cerr << error_msg << " , END!" << endl;
         exit(2);
@@ -278,7 +279,7 @@ static bool _post_data(istream &io, asrdemo::AsrdemoController &controller, int 
         return false;
     }
 
-    sleep_ms = asrdemo::util::cal_speech_16k_duration_ms(readed_len); // 根据audio_buf_len 计算音频长度 16k采样率
+    sleep_ms = asrdemo::Util::cal_speech_16k_duration_ms(readed_len); // 根据audio_buf_len 计算音频长度 16k采样率
 
     return true;
 }

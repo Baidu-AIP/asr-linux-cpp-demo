@@ -4,19 +4,9 @@
 
 #include "StatusListener.hpp"
 namespace asrdemo {
-void StatusListener::output_callback(bds::BDSSDKMessage &message, int status){
-    switch (status) {
-        case bds::EVoiceRecognitionClientWorkStatusLongSpeechEnd:
-        case bds::EVoiceRecognitionClientWorkStatusError:
-        case bds::EVoiceRecognitionClientWorkStatusCancel: {
-            // std::cout << status << " status finish" << std::endl;
-            finished = true;
-            break;
-        }
-    }
-    ResultListener::output_callback(message,status);
+void StatusListener::on_last_status(int status){
+    finished = true;
 }
-
 bool StatusListener::is_finished() const{
 
     return finished;

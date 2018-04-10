@@ -128,10 +128,10 @@ int asr_online_pushaudio(const char *file_path, const std::string &push_cmd, bds
 
     while (!feof(fp) && !asr_finished) {
         size_t read_cnt = fread(audio_buf, 1, audio_buf_len, fp);
-
         if (read_cnt > 0) {
             push_params.set_parameter(bds::DATA_CHUNK, audio_buf, (int) read_cnt);
             printf("[%s]push_audio data, size %ld\n", get_gmt_time().c_str(), read_cnt);
+            std::cout<<sdk->get_sdk_version()<<std::endl;
             if (!sdk->post(push_params, err_msg)) {
                 fprintf(err_output_file, "push audio data failed for %s\n", err_msg.c_str());
             }

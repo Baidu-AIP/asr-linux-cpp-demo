@@ -76,6 +76,7 @@ void ResultListener::output_callback(bds::BDSSDKMessage &message, int status) {
 
         case bds::EVoiceRecognitionClientWorkStatusLongSpeechEnd: { // 长语音结束状态
             on_long_speech_end();
+            on_last_status(status);
             break;
         }
 
@@ -92,12 +93,14 @@ void ResultListener::output_callback(bds::BDSSDKMessage &message, int status) {
             message.get_parameter(bds::CALLBACK_ERROR_SERIAL_NUM, sn);
 
             on_error(err_domain, err_code, err_desc, sn);
+            on_last_status(status);
             break;
         }
 
         case bds::EVoiceRecognitionClientWorkStatusCancel: {
             //用户取消
             on_cancel();
+            on_last_status(status);
             break;
         }
 
@@ -110,6 +113,7 @@ void ResultListener::output_callback(bds::BDSSDKMessage &message, int status) {
         }
     }
 }
+
 
 /**
  * 识别开始
@@ -155,5 +159,15 @@ void ResultListener::on_nlu(const std::string &json) {
 void ResultListener::on_cancel() {
 
 }
+
+
+void ResultListener::on_long_speech_end() {
+
+}
+
+void ResultListener:: on_last_status(int status){
+
+}
+
 
 } /* namespace asrdemo */

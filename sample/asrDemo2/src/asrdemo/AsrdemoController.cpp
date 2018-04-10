@@ -24,7 +24,7 @@ AsrdemoController::AsrdemoController(const std::string &app_name, const std::str
         _app_name(app_name), _resource_path(resource_path), _listener(listener), _is_configed(false),
         _has_error(false) {
     _sdk = bds::BDSpeechSDK::get_instance(bds::SDK_TYPE_ASR, _error_msg);
-    if (_sdk == NULL) {
+    if (_sdk == nullptr) {
         _has_error = true;
         _error_msg = "BDSpeechSDK is NULL;";
     }
@@ -32,14 +32,20 @@ AsrdemoController::AsrdemoController(const std::string &app_name, const std::str
 }
 
 AsrdemoController::~AsrdemoController() {
-
+    release();
 }
 
 bool AsrdemoController::config(bds::BDSSDKMessage &config_params, std::string &error_msg) {
     if (_is_configed) {
+        _has_error = true;
         _error_msg = "bd_speech_control_impl has already initialized";
     }
-    _sdk->set_event_listener(&output_callback, (void *) this);
+    if (_is_finished || _sdk == nullptr){
+        _has_error = true;
+        _error_msg = "bd_speech_control_impl has already initialized";
+    }
+    CHECK_ERROR_THEN_RETURN("sdk is finished");
+    _sdk->set_event_listener(&AsrdemoController::output_callback, (void *)this);
     CHECK_ERROR_THEN_RETURN("BDSpeechSDK init ERROR");
     set_config_params(config_params);
     CHECK_ERROR_THEN_RETURN("set_config_params ERROR");
@@ -51,6 +57,10 @@ bool AsrdemoController::config(bds::BDSSDKMessage &config_params, std::string &e
 }
 
 bool AsrdemoController::post_audio_data(const char *audio_buf, int audio_buf_len, std::string &error_msg) {
+    if (_is_finished){
+        error_msg = " sdk is finished and released";
+        return false;
+    }
     _push_params.set_parameter(bds::DATA_CHUNK, audio_buf, audio_buf_len);
     _has_error = !_sdk->post(_push_params, _error_msg);
     CHECK_ERROR_THEN_RETURN("post_audio_data ERROR");
@@ -58,13 +68,17 @@ bool AsrdemoController::post_audio_data(const char *audio_buf, int audio_buf_len
 }
 
 bool AsrdemoController::post_data_finish_and_stop(std::string &error_msg) {
-    if (!AsrdemoController::post_audio_data(NULL, 0, error_msg)) {
+    if (!post_audio_data(NULL, 0, error_msg)) {
         return false;
     }
     return stop(error_msg);
 }
 
 bool AsrdemoController::cancel(std::string &error_msg) {
+    if (_is_finished){
+        error_msg = " sdk is finished and released";
+        return false;
+    }
     bds::BDSSDKMessage cancel_params;
     cancel_params.name = bds::ASR_CMD_CANCEL;
     _has_error = !_sdk->post(cancel_params, _error_msg);
@@ -73,6 +87,10 @@ bool AsrdemoController::cancel(std::string &error_msg) {
 }
 
 bool AsrdemoController::stop(std::string &error_msg) {
+    if (_is_finished){
+        error_msg = " sdk is finished and released";
+        return false;
+    }
     bds::BDSSDKMessage stop_params;
     stop_params.name = bds::ASR_CMD_STOP;
     _has_error = !_sdk->post(stop_params, _error_msg);
@@ -93,6 +111,13 @@ void AsrdemoController::output_callback(bds::BDSSDKMessage &message, void *user_
     }
 
     AsrdemoController *controller = (AsrdemoController *) user_arg;
+    switch (status){
+        case bds::EVoiceRecognitionClientWorkStatusCancel:
+        case bds::EVoiceRecognitionClientWorkStatusError:
+        case bds::EVoiceRecognitionClientWorkStatusLongSpeechEnd:
+            controller->release();
+            break;
+    }
     controller->_listener.output_callback(message, status);
 
 }
@@ -147,9 +172,11 @@ void AsrdemoController::set_start_params() {
 }
 
 void AsrdemoController::release() {
-    if (_sdk != NULL) {
+    std::lock_guard<std::mutex> lk(_finish_mutex);
+    _is_finished = true;
+    if (_sdk != nullptr) {
         bds::BDSpeechSDK::release_instance(_sdk);
-        _sdk = NULL; // 注意 如果多次调用release方法，注意 _sdk的读取需要线程同步
+        _sdk = nullptr; // 注意 如果多次调用release方法，注意 _sdk的读取需要线程同步
     }
 }
 
