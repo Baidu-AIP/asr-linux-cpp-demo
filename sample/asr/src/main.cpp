@@ -86,6 +86,7 @@ void asr_set_config_params(bds::BDSSDKMessage &cfg_params) {
     const std::string mfe_cmvn_file_path = "../../resources/asr_resource/bds_easr_mfe_cmvn.dat"; //  bds_easr_mfe_cmvn.dat文件路径
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_MFE_DNN_DAT_FILE, mfe_dnn_file_path); // 强制固定值
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_MFE_CMVN_DAT_FILE, mfe_cmvn_file_path); // 强制固定值
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, bds::EVR_AUDIO_COMPRESSION_PCM);
 
     // //如果不需要提前返回
 }

@@ -154,6 +154,10 @@ void AsrdemoController::set_config_params(bds::BDSSDKMessage &config_params) {
         config_params.set_parameter(bds::ASR_PARAM_KEY_MFE_CMVN_DAT_FILE,
                                     _resource_path + "bds_easr_mfe_cmvn.dat");
     }
+    if (!config_params.get_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, temp_str)) {
+        config_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE,
+                                    bds::EVR_AUDIO_COMPRESSION_PCM);
+    }
     int tmp_int;
     if (!config_params.get_parameter(bds::COMMON_PARAM_KEY_DEBUG_LOG_LEVEL, tmp_int)) {
         config_params.set_parameter(bds::COMMON_PARAM_KEY_DEBUG_LOG_LEVEL,
