@@ -17,6 +17,7 @@ cd ..
 \
 echo " begin to build " && \
 rm -rf run/* && \
+mkdir -p run && \
 sleep 2  && \
 cd run && \
 cmake .. && make -j4 && \
