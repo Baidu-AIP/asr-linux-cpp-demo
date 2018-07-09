@@ -14,7 +14,7 @@ LIB_PATH=../../lib
 EXTERN_PATH=../../extern/lib
 TARGET_PATH=./
 
-CPPFLAGS1=-Wall -O0 -fPIC -g -D__LINUX__ -Wno-unknown-pragmas -D_GLIBCXX_USE_CXX11_ABI=0
+CPPFLAGS1=-Wall -O0 -fPIC -g -D__LINUX__ -Wno-unknown-pragmas -D_GLIBCXX_USE_CXX11_ABI=0  -std=c++11
 CPPFLAGS= $(CPPFLAGS1) $(LIB_PATH)/libBDSpeechSDK.a $(EXTERN_PATH)/libcurl.a $(EXTERN_PATH)/libiconv.a $(EXTERN_PATH)/libz.a $(EXTERN_PATH)/libssl.a $(EXTERN_PATH)/libcrypto.a $(EXTERN_PATH)/libuuid.a -lrt -ldl -lpthread
 SRC_FILE=$(shell cd $(SRC_PATH)&&echo *.cpp)
 SRC:=$(foreach n,$(SRC_FILE),$(SRC_PATH)/$(n))

@@ -18,7 +18,7 @@ using namespace std;
  * 3. 测试完毕后，请确认修改asr_set_start_params里面app参数
  */
 
-char audio_dir[256] = "./pcm/"; // 与THREAD_NUM一起决定测试的文件名
+char audio_dir[256] = "./pcm"; // 与THREAD_NUM一起决定测试的文件名
 const int THREAD_NUM = 1; // 测试的线程数，最大不能超过10
 pthread_t thread_ids[THREAD_NUM]; // 线程信息
 pthread_mutex_t thread_mutexes[THREAD_NUM]; // 锁信息，用于同步SDK内部回调线程和用户的调用线程的asr_finish_tags
@@ -62,7 +62,7 @@ void asr_set_config_params(bds::BDSSDKMessage &cfg_params) {
     const std::string chunk_key = "jhRA15uv8Lvd4r9qbtmOODMv";
     const std::string secret_key = "f0a12f8261e1121861a1cd3f4ed02f68";
 
-    const std::string product_id = "15361";
+    const std::string product_id = "15362";
     // const std::string product_id = "1536";// 普通话搜索模型：1536，普通话搜索模型+语义理解 15361, 普通话输入法模型（有逗号） 1537
 
     cfg_params.name = bds::ASR_CMD_CONFIG;
@@ -73,12 +73,12 @@ void asr_set_config_params(bds::BDSSDKMessage &cfg_params) {
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_PRODUCT_ID, product_id);
     cfg_params.set_parameter(bds::COMMON_PARAM_KEY_DEBUG_LOG_LEVEL, sdk_log_level);
 
-    // float vad_pause_time_ms = 700.0;  //设置vad语句静音切分门限, ms
-    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_MAX_SPEECH_PAUSE, vad_pause_time_ms);
+    // float vad_pause_frames = 30;  //设置vad语句静音切分门限（帧）, 30帧 = 300ms
+    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_MAX_SPEECH_PAUSE, vad_pause_frames);
 
-    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, bds::EVR_AUDIO_COMPRESSION_BV32); // 有损压缩
-    //cfg_params.set_parameter(bds::ASR_PARAM_KEY_SAVE_AUDIO_ENABLE, 1);    //是否存识别的音频
-    //cfg_params.set_parameter(bds::ASR_PARAM_KEY_SAVE_AUDIO_PATH, "sdk_save_audio.d");  //存音频的路径
+
+    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_SAVE_AUDIO_ENABLE, 1);    //是否存识别的音频
+    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_SAVE_AUDIO_PATH, "sdk_save_audio.d");  //存音频的路径
 
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_ENABLE_LONG_SPEECH, 1); // 强制固定值
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_CHUNK_ENABLE, 1); // 强制固定值
@@ -87,8 +87,8 @@ void asr_set_config_params(bds::BDSSDKMessage &cfg_params) {
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_MFE_DNN_DAT_FILE, mfe_dnn_file_path); // 强制固定值
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_MFE_CMVN_DAT_FILE, mfe_cmvn_file_path); // 强制固定值
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, bds::EVR_AUDIO_COMPRESSION_PCM);
+    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, bds::EVR_AUDIO_COMPRESSION_BV32); // 有损压缩, 可能遇见音频压缩问题
 
-    // //如果不需要提前返回
 }
 
 // 设置启动参数
@@ -131,8 +131,7 @@ int asr_online_pushaudio(const char *file_path, const std::string &push_cmd, bds
         size_t read_cnt = fread(audio_buf, 1, audio_buf_len, fp);
         if (read_cnt > 0) {
             push_params.set_parameter(bds::DATA_CHUNK, audio_buf, (int) read_cnt);
-            printf("[%s]push_audio data, size %ld\n", get_gmt_time().c_str(), read_cnt);
-            std::cout<<sdk->get_sdk_version()<<std::endl;
+            // printf("[%s]push_audio data, size %ld\n", get_gmt_time().c_str(), read_cnt);
             if (!sdk->post(push_params, err_msg)) {
                 fprintf(err_output_file, "push audio data failed for %s\n", err_msg.c_str());
             }
@@ -147,7 +146,7 @@ int asr_online_pushaudio(const char *file_path, const std::string &push_cmd, bds
 
     //告诉sdk，后续不会再post音频数据 ， 注意这个调用之后需要紧接着调用asr_online_stop
     push_params.set_parameter(bds::DATA_CHUNK, audio_buf, 0);
-    printf("[%s]push_audio finish\n",get_gmt_time().c_str());
+    printf("[%s]push_audio finish\n", get_gmt_time().c_str());
     if (!sdk->post(push_params, err_msg)) {
         fprintf(err_output_file, "push audio data failed for %s\n", err_msg.c_str());
     }
@@ -337,7 +336,7 @@ static void *asr_thread(void *arg) {
         fprintf(err_output_file, "thread %d, get sdk failed for %s\n", thread_seq, err_msg.c_str());
         return NULL;
     }
-
+    fprintf(stdout, "sdk version :%s\n", sdk->get_sdk_version().c_str());
     /*  2 设置输出回调  */
     sdk->set_event_listener(&asr_output_callback, (void *) &thread_seq);
 

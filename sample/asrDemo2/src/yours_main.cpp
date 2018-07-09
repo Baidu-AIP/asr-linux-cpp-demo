@@ -39,8 +39,8 @@ static void set_config(bds::BDSSDKMessage &cfg_params) {
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_SECRET_KEY, app_secret);
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_PRODUCT_ID, product_id);
     cfg_params.set_parameter(bds::COMMON_PARAM_KEY_DEBUG_LOG_LEVEL, bds::EVRDebugLogLevelOff); //关闭debug日志 ，上线时请注释此行
-    // float vad_pause_time_ms = 700.0;  //设置vad语句静音切分门限, ms。 即原始语音静音 700ms后，SDK认为一句话结束
-    // cfg_params.set_parameter(bds::ASR_PARAM_KEY_MAX_SPEECH_PAUSE, vad_pause_time_ms);
+    float vad_pause_frame = 30;  //设置vad语句静音切分门限, 30帧= 300ms。 即原始语音静音 300ms后，SDK认为一句话结束
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_MAX_SPEECH_PAUSE, vad_pause_frame);
 
     //以下是不常用的参数
     // cfg_params.set_parameter(bds::ASR_PARAM_KEY_COMPRESSION_TYPE, bds::EVR_AUDIO_COMPRESSION_BV32); // 有损压缩
@@ -91,7 +91,6 @@ static void recog_one_file() {
         exit(1);
     }
 
-    // _audio_file_rate_is_8k = true； // 8k采样率音频设为true
     yours::PrintResultListener listener(filename);
     asrdemo::AsrdemoController controller("testYourApp", "../../../resources/asr_resource/", listener);
     _config(controller);
