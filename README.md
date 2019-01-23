@@ -18,7 +18,9 @@ Linux C++ SDK 仅有在线长语音功能，包含在线语义。没有任何离
 sample目录下有三个实例工程
 
 sample/asr 运行 sh build_and_run.sh
+
 sample/asrDemo2 下 run目录中运行 sh build_and_run.sh 。同时也是为Clion工程
+
 sample/asrDemo-srt 阅读该目录下的readme文件，再运行
 
 ## 完整文档
