@@ -58,9 +58,9 @@ void asr_set_config_params(bds::BDSSDKMessage &cfg_params) {
     const bds::TBDVoiceRecognitionDebugLogLevel sdk_log_level = bds::EVRDebugLogLevelOff; // 关闭详细日志
 
     // app_id app_key app_secret 请测试成功后替换为您在网页上申请的appId appKey和appSecret
-    const std::string app_id = "10555002";
-    const std::string chunk_key = "jhRA15uv8Lvd4r9qbtmOODMv";
-    const std::string secret_key = "f0a12f8261e1121861a1cd3f4ed02f68";
+    const std::string app_id = "xxx";
+    const std::string chunk_key = "xxx";
+    const std::string secret_key = "xxx";
 
     const std::string product_id = "15362";
     // const std::string product_id = "1536";// 普通话搜索模型：1536，普通话搜索模型+语义理解 15361, 普通话输入法模型（有逗号） 1537

@@ -28,9 +28,9 @@ using namespace std;
 
 static void set_config(bds::BDSSDKMessage &cfg_params) {
     // app_id app_key app_secret 请测试成功后替换为您在网页上申请的appId appKey和appSecret
-    const std::string app_id = "10455099";
-    const std::string app_key = "rKCHBLmYiFPuCQTS0HttLbUD";
-    const std::string app_secret = "037dc446820ec143d1628c20146b9d34";
+    const std::string app_id = "xxx";
+    const std::string app_key = "xxx";
+    const std::string app_secret = "xxx";
 
     const std::string product_id = "1536"; // 普通话搜索模型(没有逗号）)：1536，普通话搜索模型+语义理解 15361, 普通话输入法模型（有逗号） 1537
 

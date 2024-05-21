@@ -26,9 +26,9 @@ std::atomic_int g_count = ATOMIC_VAR_INIT(0);
 static void set_config(bds::BDSSDKMessage &cfg_params) {
 
     // app_id app_key app_secret 请测试成功后替换为您在网页上申请的appId appKey和appSecret
-    cfg_params.set_parameter(bds::ASR_PARAM_KEY_APP_ID, "10455099");
-    cfg_params.set_parameter(bds::ASR_PARAM_KEY_CHUNK_KEY, "rKCHBLmYiFPuCQTS0HttLbUD");
-    cfg_params.set_parameter(bds::ASR_PARAM_KEY_SECRET_KEY, "037dc446820ec143d1628c20146b9d34");
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_APP_ID, "xxx");
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_CHUNK_KEY, "xxx");
+    cfg_params.set_parameter(bds::ASR_PARAM_KEY_SECRET_KEY, "xxx");
 
     // 普通话搜索模型(没有逗号）)：1536，普通话搜索模型+语义理解 15361, 普通话输入法模型（有逗号） 1537
     cfg_params.set_parameter(bds::ASR_PARAM_KEY_PRODUCT_ID, "1537");
